@@ -2,12 +2,14 @@ const router = require("express").Router();
 
 const mongoose = require("mongoose");
 
+const { isAuthenticated } = require("../middleware/jwt.middleware");
+
 const Project = require("../models/Project.model");
 const Task = require("../models/Task.model");
 
 
 //  POST /api/projects  -  Creates a new project
-router.post("/projects", (req, res, next) => {
+router.post("/projects", isAuthenticated, (req, res, next) => {
   const { title, description } = req.body;
 
   const newProject = {
@@ -43,7 +45,7 @@ router.get('/projects', (req, res, next) => {
 
 
 //  GET /api/projects/:projectId -  Retrieves a specific project by id
-router.get('/projects/:projectId', (req, res, next) => {
+router.get('/projects/:projectId', isAuthenticated, (req, res, next) => {
   const { projectId } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(projectId)) {
@@ -66,7 +68,7 @@ router.get('/projects/:projectId', (req, res, next) => {
 
 
 // PUT  /api/projects/:projectId  -  Updates a specific project by id
-router.put('/projects/:projectId', (req, res, next) => {
+router.put('/projects/:projectId', isAuthenticated,(req, res, next) => {
   const { projectId } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(projectId)) {
@@ -92,7 +94,7 @@ router.put('/projects/:projectId', (req, res, next) => {
 
 
 // DELETE  /api/projects/:projectId  -  Deletes a specific project by id
-router.delete('/projects/:projectId', (req, res, next) => {
+router.delete('/projects/:projectId', isAuthenticated, (req, res, next) => {
   const { projectId } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(projectId)) {
