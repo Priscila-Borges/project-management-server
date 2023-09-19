@@ -21,8 +21,7 @@ router.post("/projects", (req, res, next) => {
     .catch(err => {
       console.log("Error creating new project...", err);
       res.status(500).json({
-        message: "Error creating a new project",
-        error: err
+        message: "Error creating a new project",        
       });
     });
 });
@@ -36,8 +35,7 @@ router.get('/projects', (req, res, next) => {
     .catch(err => {
       console.log("Error getting list of projects...", err);
       res.status(500).json({
-        message: "Error getting list of projects",
-        error: err
+        message: "Error getting list of projects",       
       });
     });
 });
@@ -61,8 +59,7 @@ router.get('/projects/:projectId', (req, res, next) => {
     .catch(err => {
       console.log("...", err);
       res.status(500).json({
-        message: "Error getting project details",
-        error: err
+        message: "Error getting project details",        
       });
     });
 });
@@ -88,8 +85,7 @@ router.put('/projects/:projectId', (req, res, next) => {
     .catch(err => {
       console.log("Error updating project", err);
       res.status(500).json({
-        message: "Error updating project",
-        error: err
+        message: "Error updating project",        
       });
     })
 });
@@ -109,8 +105,7 @@ router.delete('/projects/:projectId', (req, res, next) => {
     .catch(err => {
       console.log("error deleting project", err);
       res.status(500).json({
-        message: "error deleting project",
-        error: err
+        message: "error deleting project",        
       });
     })
 });
